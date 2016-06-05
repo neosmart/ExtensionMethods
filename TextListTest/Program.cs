@@ -7,11 +7,14 @@ public class Test
 {
     public static void Main()
     {
-        var allNames = new [] {"Meg", "Jo", "Beth", "Amy"};
+        var allNames = new [] { "Meg", "Jo", "Beth", "Amy" };
         var names = new List<string>(allNames.Length);
 
         bool oxford = true;
         bool spaces = true;
+        bool conjunction = true;
+
+        Func<bool, string> with = x => x ? "" : "out";
 
         Console.WriteLine("***Empty list***");
         Console.WriteLine(names.ToTextList());
@@ -20,19 +23,22 @@ public class Test
         {
             for (int j = 0; j < 2; ++j)
             {
-                Console.WriteLine("***With{0} oxford comma, with{1} spaces***", oxford ? "" : "out", spaces ? "" : "out");
-                names.Clear();
-
-                foreach (var name in allNames)
+                for (int k = 0; k < 2; ++k)
                 {
-                    names.Add(name);
-                    var flags = (spaces ? TextList.Formatting.Spaces : TextList.Formatting.None) |
-                                (oxford ? TextList.Formatting.OxfordSeparator : TextList.Formatting.None);
-                    Console.WriteLine(" {0}", names.ToTextList(flags, (i + j) % 2 == 0 ? "and" : "", ","));
-                }
+                    Console.WriteLine("***With{0} oxford comma, with{1} spaces, with{2} conjunction***", with(oxford), with(spaces), with(conjunction));
 
+                    names.Clear();
+                    foreach (var name in allNames)
+                    {
+                        names.Add(name);
+                        var flags = (spaces ? TextList.Formatting.Spaces : TextList.Formatting.None) |
+                            (oxford ? TextList.Formatting.OxfordSeparator : TextList.Formatting.None);
+                        Console.WriteLine(" {0}", names.ToTextList(flags, conjunction ? "and" : string.Empty));
+                    }
+                    Console.WriteLine();
+                    conjunction = !conjunction;
+                }
                 spaces = !spaces;
-                Console.WriteLine();
             }
             oxford = !oxford;
         }
