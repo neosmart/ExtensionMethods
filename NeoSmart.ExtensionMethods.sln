@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextList", "TextList\TextList.csproj", "{2F9DD129-696D-4500-90AA-47267529F74E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionMethods", "TextList\ExtensionMethods.csproj", "{2F9DD129-696D-4500-90AA-47267529F74E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextListTest", "TextListTest\TextListTest.csproj", "{8C0A37AC-6941-4513-9B87-5636E97F28D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionMethodTests", "TextListTest\ExtensionMethodTests.csproj", "{8C0A37AC-6941-4513-9B87-5636E97F28D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

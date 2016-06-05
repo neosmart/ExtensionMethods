@@ -18,10 +18,10 @@ namespace NeoSmart.ExtensionMethods
         public static string ToTextList<T>(this IEnumerable<T> entities, Formatting formatting = Formatting.Default, string conjunction = "and", string separator = ",")
         {
             bool oxfordComma = ((formatting & Formatting.OxfordSeparator) == Formatting.OxfordSeparator) || string.IsNullOrEmpty(conjunction);
+            string space = ((formatting & Formatting.Spaces) == Formatting.Spaces) ? " " : string.Empty;
 
             var sb = new StringBuilder();
             Queue<T> buffer = new Queue<T>(4);
-            string space = ((formatting & Formatting.Spaces) == Formatting.Spaces) ? " " : string.Empty;
 
             foreach (var e in entities)
             {
