@@ -46,7 +46,7 @@ namespace NeoSmart.ExtensionMethods
             {
                 if (string.IsNullOrEmpty(conjunction))
                 {
-                    sb.AppendFormat("{0}{1}", separator, space, buffer.Dequeue());
+                    sb.AppendFormat("{0}{1}{2}", separator, space, buffer.Dequeue());
                 }
                 else
                 {
