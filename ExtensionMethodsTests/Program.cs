@@ -8,7 +8,7 @@ public class ExtensionMethodTests
 {
     public static void Main()
     {
-        ITest[] tests = new [] { new TextListTest() };
+        ITest[] tests = new ITest[] { new TextListTest(), new StringTests() };
 
         foreach (var test in tests)
         {

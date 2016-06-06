@@ -37,10 +37,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextListTest.cs" />
     <Compile Include="ITest.cs" />
+    <Compile Include="StringTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\TextList\ExtensionMethods.csproj">
+    <ProjectReference Include="..\ExtensionMethods\ExtensionMethods.csproj">
       <Project>{2F9DD129-696D-4500-90AA-47267529F74E}</Project>
       <Name>ExtensionMethods</Name>
     </ProjectReference>
