@@ -14,9 +14,27 @@ namespace NeoSmart.ExtensionMethods
             return string.IsNullOrWhiteSpace(s);
         }
 
-        public static string StripWhitespace(this string s)
+        public static string Strip(this string s, params char[] matches)
         {
-            return s.Trim(' ', '\t', '\r', '\n');
+            //We will binary search
+            Array.Sort(matches);
+
+            var sb = new System.Text.StringBuilder(s);
+            foreach (var match in matches)
+            {
+                if (Array.BinarySearch(matches, match) < 0)
+                {
+                    sb.Append(match);
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        private static char[] _whitespace = new[] { ' ', '\t', '\n', '\r' };
+        public static string StripWhitespace(this string s, params char[] matches)
+        {
+            return Strip(s, _whitespace);
         }
     }
 }
