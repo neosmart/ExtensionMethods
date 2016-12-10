@@ -13,5 +13,10 @@ namespace NeoSmart.ExtensionMethods
         {
             return string.IsNullOrWhiteSpace(s);
         }
+
+        public static string StripWhitespace(this string s)
+        {
+            return s.Trim(' ', '\t', '\r', '\n');
+        }
     }
 }
