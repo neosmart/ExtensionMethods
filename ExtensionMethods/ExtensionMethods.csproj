@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>NeoSmart.ExtensionMethods</RootNamespace>
     <AssemblyName>NeoSmart.ExtensionMethods</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -38,6 +38,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -57,7 +58,7 @@
     <Compile Include="DateTime.cs" />
     <Compile Include="DictionaryExtensions.cs" />
     <Compile Include="Json.cs" />
-    <Compile Include="NameObjectCollectionExtensions.cs" />
+    <Compile Include="Name.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextList.cs" />
     <Compile Include="String.cs" />
