@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NeoSmart.ExtensionMethods
 {
@@ -35,6 +37,11 @@ namespace NeoSmart.ExtensionMethods
         public static string StripWhitespace(this string s, params char[] matches)
         {
             return Strip(s, _whitespace);
+        }
+
+        public static string Join(this IEnumerable<string> strings, string with = " ")
+        {
+            return string.Join(with, strings.Where(s => !string.IsNullOrWhiteSpace(s)));
         }
     }
 }
