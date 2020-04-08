@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,10 +11,12 @@ namespace NeoSmart.ExtensionMethods
             return string.IsNullOrEmpty(s);
         }
 
+#if !NET20 && !NET30 && !NET35
         public static bool IsNullOrWhitespace(this string s)
         {
             return string.IsNullOrWhiteSpace(s);
         }
+#endif
 
         public static string Strip(this string s, params char[] matches)
         {
@@ -33,8 +35,8 @@ namespace NeoSmart.ExtensionMethods
             return sb.ToString();
         }
 
-        private static char[] _whitespace = new[] { ' ', '\t', '\n', '\r' };
-        public static string StripWhitespace(this string s, params char[] matches)
+        private static readonly char[] _whitespace = new[] { ' ', '\t', '\n', '\r' };
+        public static string StripWhitespace(this string s)
         {
             return Strip(s, _whitespace);
         }
@@ -42,6 +44,12 @@ namespace NeoSmart.ExtensionMethods
         public static string Join(this IEnumerable<string> strings, string with = " ")
         {
             return string.Join(with, strings.Where(s => !string.IsNullOrWhiteSpace(s)));
+        }
+
+        private static Encoding UTF8 = new UTF8Encoding(false);
+        public static byte[] ToUtf8Bytes(this string s)
+        {
+            return UTF8.GetBytes(s);
         }
     }
 }

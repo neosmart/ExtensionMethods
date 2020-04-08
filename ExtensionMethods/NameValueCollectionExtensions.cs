@@ -1,9 +1,9 @@
-﻿using System;
+#if !NETSTANDARD1_3
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace NeoSmart.ExtensionMethods
@@ -24,8 +24,7 @@ namespace NeoSmart.ExtensionMethods
 
         public static string SafeLookup(this NameValueCollection dictionary, string key, string ifNotFound = "")
         {
-            string value;
-            return dictionary.TryGetValue(key, out value) ? value : ifNotFound;
+            return dictionary.TryGetValue(key, out string value) ? value : ifNotFound;
         }
 
         public static bool Contains(this NameObjectCollectionBase.KeysCollection keys, string key)
@@ -43,3 +42,4 @@ namespace NeoSmart.ExtensionMethods
         }
     }
 }
+#endif

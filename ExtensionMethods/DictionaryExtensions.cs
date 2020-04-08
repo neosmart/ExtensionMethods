@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace NeoSmart.ExtensionMethods
 {
@@ -10,8 +9,7 @@ namespace NeoSmart.ExtensionMethods
     {
         public static TValue SafeLookup<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue ifNotFound)
         {
-            TValue value;
-            return dictionary.TryGetValue(key, out value) ? value : ifNotFound;
+            return dictionary.TryGetValue(key, out TValue value) ? value : ifNotFound;
         }
     }
 }
