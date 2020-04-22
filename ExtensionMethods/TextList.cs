@@ -5,8 +5,8 @@ using System.Text;
 namespace NeoSmart.ExtensionMethods
 {
     public static class TextList
-    {   
-        [Flags] 
+    {
+        [Flags]
         public enum Formatting
         {
             Default = OxfordSeparator | Spaces,
@@ -63,9 +63,9 @@ namespace NeoSmart.ExtensionMethods
                 else
                 {
                     sb.AppendFormat("{0}{1}{2}", conjunction, space, buffer.Dequeue());
-                }       
+                }
             }
             return sb.ToString();
         }
-    }    
+    }
 }

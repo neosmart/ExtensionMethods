@@ -1,7 +1,9 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace NeoSmart.ExtensionMethods
 {
@@ -12,21 +14,25 @@ namespace NeoSmart.ExtensionMethods
             return string.IsNullOrEmpty(s);
         }
 
-        public static string Strip(this string s, params char[] matches)
+        private static string StripSorted(this string s, params char[] matches)
         {
-            //We will binary search
-            Array.Sort(matches);
-
-            var sb = new System.Text.StringBuilder(s);
-            foreach (var match in matches)
+            var sb = new StringBuilder(s.Length);
+            foreach (var c in s)
             {
-                if (Array.BinarySearch(matches, match) < 0)
+                if (Array.BinarySearch(matches, c) < 0)
                 {
-                    sb.Append(match);
+                    sb.Append(c);
                 }
             }
 
             return sb.ToString();
+        }
+
+        public static string Strip(this string s, params char[] matches)
+        {
+            // We will binary search
+            Array.Sort(matches);
+            return StripSorted(s, matches);
         }
 
         private static readonly char[] _whitespace = new[] { ' ', '\t', '\n', '\r' };
@@ -35,7 +41,18 @@ namespace NeoSmart.ExtensionMethods
             return Strip(s, _whitespace);
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Use the alternate spelling IsNullOrWhitespace with a lowercase s in Whitespace")]
         public static bool IsNullOrWhiteSpace(this string s)
+        {
+            return IsNullOrWhitespace(s);
+        }
+
+        public static bool IsNullOrWhitespace(
+#if NETSTANDARD2_1 || NETCOREAPP3_0 || NETCOREAPP3_1
+            [NotNullWhen(false)]
+#endif
+        this string s)
         {
 #if NET20 || NET30 || NET35
             if (s is null || s.Length == 0)
@@ -60,12 +77,12 @@ namespace NeoSmart.ExtensionMethods
         public static string Join(this string[] strings, string with = " ")
         {
 #if NET20 || NET30 || NET35
-            return string.Join(with, strings.Where(s => !s.IsNullOrWhiteSpace()).ToArray());
+            return string.Join(with, strings.Where(s => !s.IsNullOrWhitespace()).ToArray());
 #else
             // Check if we must before using the IEnumerable<string> instead of string[] override
-            if (strings.Any(IsNullOrWhiteSpace))
+            if (strings.Any(IsNullOrWhitespace))
             {
-                return string.Join(with, strings.Where(s => !s.IsNullOrWhiteSpace()));
+                return string.Join(with, strings.Where(s => !s.IsNullOrWhitespace()));
             }
             else
             {
@@ -77,9 +94,9 @@ namespace NeoSmart.ExtensionMethods
         public static string Join(this IEnumerable<string> strings, string with = " ")
         {
 #if NET20 || NET30 || NET35
-            return string.Join(with, strings.Where(s => !s.IsNullOrWhiteSpace()).ToArray());
+            return string.Join(with, strings.Where(s => !s.IsNullOrWhitespace()).ToArray());
 #else
-            return string.Join(with, strings.Where(s => !s.IsNullOrWhiteSpace()));
+            return string.Join(with, strings.Where(s => !s.IsNullOrWhitespace()));
 #endif
         }
 
